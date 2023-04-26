@@ -44,6 +44,13 @@ public class DANI extends PApplet {
 				sonnet[i] += ToConcat;
 			}
 		}
+
+		println("\nSonnet:\n");
+		
+		for(int i = 0; i < sonnet.length; i++){
+			println(sonnet[i]);
+		}
+
         return sonnet;
     }
 
@@ -57,14 +64,17 @@ public class DANI extends PApplet {
 		printModel();
 
 		writeSonnet();
-		
-		for(int i = 0; i < sonnet.length; i++){
-			println(sonnet[i].length() +" " +sonnet[i]);
-		}
+
+		print(Model);
 	}
 
 	public void keyPressed() {
-
+		if(keyPressed){
+			if(key == ' '){
+				writeSonnet();
+			}
+		}
+		
 	}
 
 	float off = 0;
@@ -89,7 +99,7 @@ public class DANI extends PApplet {
 		Word TargetWord;
 		Follow newFollow;
 
-		Poem = loadStrings("small.txt"); // Load a text file into a String array
+		Poem = loadStrings("shakespere.txt"); // Load a text file into a String array
 
 
 		for(int i = 0; i < Poem.length; i++){
@@ -107,11 +117,7 @@ public class DANI extends PApplet {
 				if(TargetWord == null){
 					TargetWord = new Word(w);
 					Model.add(TargetWord);
-					//print(" NotFound ");
 
-				}
-				else{
-					//print(" Found ");
 				}
 
 				if(j + 1 >= Lines.length){
@@ -119,8 +125,6 @@ public class DANI extends PApplet {
 				}
 
 				newFollow = TargetWord.findWord(Lines[j+1]);
-
-				//println();
 				
 				if(newFollow == null){
 					newFollow = new Follow(Lines[j+1]);
@@ -152,7 +156,7 @@ public class DANI extends PApplet {
 		for(Word w: Model){
 
 			if(w.getWord().equals(Search)){
-				return w;
+				return w;	//returns the word object if found
 			}
 		}
 

@@ -28,5 +28,11 @@ public class Follow {
     public void IncrementCount(){
         this.count++;
     }
+
+    public String toString(){
+        return "" + word + "["+count+"]";
+    }
+
+
     
 }

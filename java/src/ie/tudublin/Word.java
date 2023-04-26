@@ -17,7 +17,7 @@ public class Word {
             System.out.print(f.getWord() +":"+Search);
 			if(f.getWord().equals(Search)){
                 //System.out.print(" :: " + f +" ");
-				return f;
+				return f;//returns the word object if found
 			}
 		}
 
@@ -34,5 +34,15 @@ public class Word {
 
     public ArrayList<Follow> getFollows() {
         return follows;
-    }    
+    }   
+    
+    public String toString(){
+        String Temp;
+
+        Temp = Word;
+        for(Follow f:follows){
+            Temp += "["+f.getWord()+"("+f.getCount()+")"+"]";
+        }
+        return Temp;
+    }
 }
