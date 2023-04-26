@@ -27,7 +27,7 @@ public class DANI extends PApplet {
 			String ToConcat;
 			int index = floor(random(Model.size())) % Model.size();
 			println(index + ":" + Model.get(index).getWord());
-			ToConcat = Model.get(index).getWord() + "";
+			ToConcat = Model.get(index).getWord() + " ";
 			sonnet[i] += ToConcat;
 
 			Temp = Model.get(index);
@@ -59,7 +59,7 @@ public class DANI extends PApplet {
 		writeSonnet();
 		
 		for(int i = 0; i < sonnet.length; i++){
-			println(" S " + sonnet[i].length() +" " +sonnet[i]);
+			println(sonnet[i].length() +" " +sonnet[i]);
 		}
 	}
 
@@ -76,6 +76,10 @@ public class DANI extends PApplet {
 		noStroke();
 		textSize(20);
         textAlign(CENTER, CENTER);
+
+		for(int i = 0; i < sonnet.length; i++){
+			text(sonnet[i], width/2, height/4+(i+1) *20);
+		}
 	}
 
 	public void loadFile(){
