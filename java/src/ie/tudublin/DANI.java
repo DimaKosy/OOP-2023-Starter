@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import com.jogamp.opengl.Threading.Mode;
 
-import ddf.minim.ugens.Line;
 import processing.core.PApplet;
 
 public class DANI extends PApplet {
@@ -16,19 +15,37 @@ public class DANI extends PApplet {
 	}
 
     String[] sonnet;
+	int SonnetSize = 8;
 
 	ArrayList<Word> Model;
 
     public String[] writeSonnet()
-    {
-        return null;
+    {	
+
+		for(String s: sonnet){
+			s = new String("Save me");
+			int index = floor(random(Model.size())) % Model.size();
+			println(index + ":" + Model.get(index).getWord());
+			//s.concat(Model.get(index).getWord() +" ");
+			println(s);
+		}
+        return sonnet;
     }
 
 	public void setup() {
 		colorMode(HSB);
 
 		Model = new ArrayList<Word>();
+		sonnet = new String[SonnetSize];
+		
 		loadFile();
+		printModel();
+
+		sonnet = writeSonnet();
+		
+		for(String s: sonnet){
+			println(s);
+		}
 	}
 
 	public void keyPressed() {
@@ -64,7 +81,6 @@ public class DANI extends PApplet {
 
 			for(int j = 0; j < Lines.length; j++){
 				String w = Lines[j];
-				String TempLine[];
 				TargetWord = findWord(w);
 
 				print(w);
@@ -72,19 +88,21 @@ public class DANI extends PApplet {
 				if(TargetWord == null){
 					TargetWord = new Word(w);
 					Model.add(TargetWord);
-					println(" NotFound ");
+					//print(" NotFound ");
 
 				}
 				else{
-					println(" Found ");
+					//print(" Found ");
 				}
-
-				newFollow = TargetWord.findWord(w);
 
 				if(j + 1 >= Lines.length){
 					continue;
 				}
 
+				newFollow = TargetWord.findWord(Lines[j+1]);
+
+				//println();
+				
 				if(newFollow == null){
 					newFollow = new Follow(Lines[j+1]);
 					TargetWord.getFollows().add(newFollow);
@@ -93,12 +111,9 @@ public class DANI extends PApplet {
 
 				newFollow.IncrementCount();
 
+
 			}
 		}
-
-
-		printModel();
-		//println(Lines);
 	}
 
 	public void printModel(){

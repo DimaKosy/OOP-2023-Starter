@@ -14,8 +14,9 @@ public class Word {
 
     public Follow findWord(String Search){
 		for(Follow f: follows){
+            System.out.print(f.getWord() +":"+Search);
 			if(f.getWord().equals(Search)){
-                System.out.print(" :: " + f +" ");
+                //System.out.print(" :: " + f +" ");
 				return f;
 			}
 		}
