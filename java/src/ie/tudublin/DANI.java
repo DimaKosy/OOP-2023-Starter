@@ -21,13 +21,28 @@ public class DANI extends PApplet {
 
     public String[] writeSonnet()
     {	
-
-		for(String s: sonnet){
-			s = new String("Save me");
+		Word Temp;
+		for(int i = 0; i < sonnet.length; i++){
+			sonnet[i] = new String();
+			String ToConcat;
 			int index = floor(random(Model.size())) % Model.size();
 			println(index + ":" + Model.get(index).getWord());
-			//s.concat(Model.get(index).getWord() +" ");
-			println(s);
+			ToConcat = Model.get(index).getWord() + "";
+			sonnet[i] += ToConcat;
+
+			Temp = Model.get(index);
+			
+			for(int s_Lenght = 1; s_Lenght < 8; s_Lenght++){
+
+
+				//print("::"+Temp.getWord());
+				if(Temp.getFollows().size() == 0){
+					continue;
+				}
+				Temp = findWord(Temp.getFollows().get(floor(random(Temp.getFollows().size())) % Temp.getFollows().size()).getWord());
+				ToConcat = Temp.getWord() + " ";
+				sonnet[i] += ToConcat;
+			}
 		}
         return sonnet;
     }
@@ -43,8 +58,8 @@ public class DANI extends PApplet {
 
 		writeSonnet();
 		
-		for(String s: sonnet){
-			println(s);
+		for(int i = 0; i < sonnet.length; i++){
+			println(" S " + sonnet[i].length() +" " +sonnet[i]);
 		}
 	}
 
