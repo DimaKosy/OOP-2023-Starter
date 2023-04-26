@@ -37,11 +37,11 @@ public class DANI extends PApplet {
 
 		Model = new ArrayList<Word>();
 		sonnet = new String[SonnetSize];
-		
+
 		loadFile();
 		printModel();
 
-		sonnet = writeSonnet();
+		writeSonnet();
 		
 		for(String s: sonnet){
 			println(s);
