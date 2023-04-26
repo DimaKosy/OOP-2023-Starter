@@ -26,7 +26,7 @@ public class DANI extends PApplet {
 			sonnet[i] = new String();
 			String ToConcat;
 			int index = floor(random(Model.size())) % Model.size();
-			println(index + ":" + Model.get(index).getWord());
+			//println(index + ":" + Model.get(index).getWord());
 			ToConcat = Model.get(index).getWord() + " ";
 			sonnet[i] += ToConcat;
 
